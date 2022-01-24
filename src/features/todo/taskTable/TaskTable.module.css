@@ -1,0 +1,15 @@
+.centerTableData {
+  text-align: center;
+}
+
+th, td {
+  word-wrap: break-word;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
