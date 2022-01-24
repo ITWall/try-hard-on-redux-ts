@@ -8,7 +8,7 @@ const ReqresApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://reqres.in/api/'}),
     tagTypes: ['User', 'PageUser'],
     endpoints: (builder) => ({
-        getListUser: builder.query<PagerUser, number>({
+        getListUser: builder.query<PagerUser<User>, number>({
             query: (pageNumber) => `users?page=${pageNumber}`,
             providesTags: ["PageUser"]
         }),
@@ -20,7 +20,7 @@ const ReqresApi = createApi({
             }),
             invalidatesTags: ['PageUser']
         }),
-        getListUserDelay: builder.query<PagerUser, number> ({
+        getListUserDelay: builder.query<PagerUser<User>, number> ({
             query: (delayInSecond) => `users?delay=${delayInSecond}`,
             keepUnusedDataFor: 20,
         })

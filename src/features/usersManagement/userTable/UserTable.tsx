@@ -8,7 +8,8 @@ import "./UserTable";
 
 export function UserTable() {
   // const { data: pageUser } = useGetListUserQuery(1);
-  const { data: pageUser, isSuccess, refetch } = useGetListUserDelayQuery(1);
+  let [page, setPage] = useState(1);
+  const { data: pageUser, isSuccess, refetch } = useGetListUserQuery(page);
   let [displayExtraTable, setDisplayExtraTable] = useState(false);
   let userRow: any = [];
   pageUser?.data.forEach((user) => {
@@ -31,6 +32,14 @@ export function UserTable() {
     }
   });
 
+  let nextPage = () => {
+    setPage((page = page + 1));
+  };
+
+  let prevPage = () => {
+    setPage((page = page - 1));
+  };
+
   return (
     <div>
       <table>
@@ -45,6 +54,9 @@ export function UserTable() {
         </thead>
         <tbody>{userRow}</tbody>
       </table>
+      <button onClick={prevPage}>Pre</button>
+      <button onClick={nextPage}>Next</button>
+
       {displayExtraTable && <ExtraUserTable />}
     </div>
   );
